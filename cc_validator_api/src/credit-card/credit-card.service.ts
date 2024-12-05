@@ -7,11 +7,11 @@ export class CreditCardService {
       return false;
     }
 
-    // Convert input to string and remove any non-digit characters
-    const numString = cardNumber.replace(/\D/g, '');
+    // Remove spaces and dashes
+    const numString = cardNumber.replace(/[\s-]/g, '');
 
-    // If the string is empty after removing non-digits, return false
-    if (numString.length === 0) {
+    // Check if the cleaned string contains only digits
+    if (!/^\d+$/.test(numString)) {
       return false;
     }
 

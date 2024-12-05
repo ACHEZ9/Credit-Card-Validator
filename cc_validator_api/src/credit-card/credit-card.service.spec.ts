@@ -18,7 +18,11 @@ describe('CreditCardService', () => {
 
   describe('validateCardNumber', () => {
     it('should return true for valid credit cards', () => {
-      const validCardNumbers = ['4111111111111111', '5555555555554444'];
+      const validCardNumbers = [
+        '4111111111111111',
+        '5555555555554444',
+        '4111 1111 1111 1111',
+      ];
 
       validCardNumbers.forEach((number) => {
         expect(service.validateCardNumber(number)).toBeTruthy();
@@ -26,9 +30,14 @@ describe('CreditCardService', () => {
     });
 
     it('should return false for invalid credit cards', () => {
-      const validCardNumbers = ['4111111111111112', '5555555555554445', 'asdf'];
+      const invalidCardNumbers = [
+        '4111111111111112',
+        '5555555555554445',
+        'asdf',
+        '4111111111111111asdf',
+      ];
 
-      validCardNumbers.forEach((number) => {
+      invalidCardNumbers.forEach((number) => {
         expect(service.validateCardNumber(number)).toBeFalsy();
       });
     });
